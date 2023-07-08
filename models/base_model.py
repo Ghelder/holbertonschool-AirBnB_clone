@@ -7,7 +7,7 @@ from datetime import datetime
 class BaseModel:
     """Base class for all AirBnB models"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         """Initializes a BaseModel instance.
 
         Args:
@@ -35,10 +35,13 @@ class BaseModel:
                 setattr(self, key, value)
 
     def parse_datetime(self, value):
-        """Sets instance attributes from a dictionary.
+        """Converts a date and time string to a date and time object.
 
         Args:
-            kwargs (dict): Dictionary containing attribute-value pairs.
+            value (str): Date and time string in the specified format.
+
+        Returns:
+            datetime: Converted date and time object.
         """
         return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
 
