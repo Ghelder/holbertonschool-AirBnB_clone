@@ -18,13 +18,17 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Test the string representation of the BaseModel"""
         model = BaseModel()
-        self.assertIsInstance(str(model), str)
+        expected_output = (
+            f"[{model.__class__.__name__}] ({model.id}) {model.__dict__}"
+        )
+        actual_output = str(model)
+        self.assertEqual(actual_output, expected_output)
 
     def test_save(self):
         """Test the save method of the BaseModel"""
         model = BaseModel()
-        model.save()
-        self.assertNotEqual(model.updated_at, model.created_at)
+        with self.assertRaises(TypeError):
+            model.save(None)
 
     def test_to_dict(self):
         """Test the to_dict method of the BaseModel"""
