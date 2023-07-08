@@ -27,8 +27,8 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """Test the save method of the BaseModel"""
         model = BaseModel()
-        with self.assertRaises(TypeError):
-            model.save(None)
+        model.save()
+        self.assertIsInstance(model.updated_at, datetime)
 
     def test_to_dict(self):
         """Test the to_dict method of the BaseModel"""
