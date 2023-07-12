@@ -4,6 +4,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -24,9 +25,9 @@ class HBNBCommand(cmd.Cmd):
         """Handle EOF (End of File) input."""
         return True
 
-    # def emptyline(self):
-    #     """Do nothing when an empty line is entered."""
-    #     pass
+    def emptyline(self):
+        """Do nothing when an empty line is entered."""
+        pass
 
     def postloop(self):
         """Print a message after exiting the program."""
@@ -45,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
 
-    classes = {"BaseModel": BaseModel}
+    classes = {"BaseModel": BaseModel, "User": User}
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class
@@ -62,7 +63,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         instance_id = args[1]
-        # key = "{}.{}".format(class_name, instance_id)
         key = f"{class_name}.{instance_id}"
         if key not in storage.all():
             print("** no instance found **")
@@ -84,7 +84,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         instance_id = args[1]
-        # key = "{}.{}".format(class_name, instance_id)
         key = f"{class_name}.{instance_id}"
         if key not in storage.all():
             print("** no instance found **")
