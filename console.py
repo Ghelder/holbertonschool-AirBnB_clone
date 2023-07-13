@@ -5,6 +5,11 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class HBNBCommand(cmd.Cmd):
@@ -46,7 +51,15 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
 
-    classes = {"BaseModel": BaseModel, "User": User}
+    classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review,
+        "State": State,
+    }
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class
